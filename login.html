@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
+        .login-container { max-width: 400px; margin: 100px auto; padding: 30px; background: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; }
+        .btn-custom { transition: background-color 0.3s ease; }
+        .btn-custom:hover { background-color: #007bff; color: #fff; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">خدمات جامعة مؤتة</a>
+    </div>
+</nav>
+<div class="login-container">
+    <h3 class="text-center">تسجيل الدخول</h3>
+    <form action="dashboard.html" method="post">
+        <div class="mb-3">
+            <label for="email" class="form-label">البريد الإلكتروني</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">كلمة المرور</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-custom w-100">تسجيل الدخول</button>
+    </form>
+    <div class="text-center mt-3">
+        <a href="register.html">إنشاء حساب جديد</a> | <a href="#" onclick="forgotPassword()">نسيت كلمة المرور؟</a>
+    </div>
+</div>
+<footer class="text-center mt-5">
+    جميع الحقوق محفوظة &copy; 2025 | @t_zep10 | amajali957@gmail.com
+</footer>
+<script>
+    function forgotPassword() {
+        alert("يرجى التواصل مع البريد الإلكتروني amajali957@gmail.com لاسترجاع كلمة المرور.");
+    }
+</script>
+</body>
+</html>
