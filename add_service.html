@@ -13,8 +13,8 @@
             <label for="service-name">اسم الخدمة:</label>
             <input type="text" id="service-name" name="service-name" required>
             
-            <label for="category">اختر التصنيف:</label>
-            <select id="category" name="category" required onchange="updateSubcategories()">
+            <label for="category">اختر التصنيف الأساسي:</label>
+            <select id="category" name="category" required>
                 <option value="السكن والإقامة">السكن والإقامة</option>
                 <option value="النقل">النقل</option>
                 <option value="المطاعم">المطاعم</option>
@@ -23,9 +23,13 @@
                 <option value="الحلويات">الحلويات</option>
             </select>
             
-            <label for="subcategory">اختر الفرع:</label>
-            <select id="subcategory" name="subcategory" required>
-                <option value="">يرجى اختيار التصنيف أولاً</option>
+            <label for="subcategory">اسم الخدمة الفرعية:</label>
+            <input type="text" id="subcategory" name="subcategory" placeholder="مثال: شقة مفروشة، تكسي خاص" required>
+            
+            <label for="service-type">نوع الخدمة:</label>
+            <select id="service-type" name="service-type" required>
+                <option value="plus">بلس</option>
+                <option value="normal">عادي</option>
             </select>
             
             <label for="description">وصف الخدمة:</label>
@@ -43,36 +47,5 @@
             <button type="submit">إرسال الطلب إلى الأدمن</button>
         </form>
     </div>
-    
-    <script>
-        function updateSubcategories() {
-            var category = document.getElementById("category").value;
-            var subcategory = document.getElementById("subcategory");
-            subcategory.innerHTML = "";
-            
-            var options = {
-                "السكن والإقامة": ["شقة مفروشة", "غرفة للإيجار", "سكن طلابي"],
-                "النقل": ["تاكسي", "حافلة", "توصيل خاص"],
-                "المطاعم": ["وجبات سريعة", "مطاعم شرقية", "مطاعم غربية"],
-                "السوبر ماركت": ["متجر صغير", "متجر متوسط", "متجر كبير"],
-                "الكافيه وسبل الترفيه": ["كافيه", "منتزه", "نادي رياضي"],
-                "الحلويات": ["حلويات شرقية", "حلويات غربية", "مخبوزات"]
-            };
-            
-            if (options[category]) {
-                options[category].forEach(function(item) {
-                    var option = document.createElement("option");
-                    option.value = item;
-                    option.textContent = item;
-                    subcategory.appendChild(option);
-                });
-            } else {
-                var defaultOption = document.createElement("option");
-                defaultOption.value = "";
-                defaultOption.textContent = "يرجى اختيار التصنيف أولاً";
-                subcategory.appendChild(defaultOption);
-            }
-        }
-    </script>
 </body>
 </html>
