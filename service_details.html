@@ -4,41 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تفاصيل الخدمة</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
-        .service-container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; }
-        .btn-custom { transition: background-color 0.3s ease; }
-        .btn-custom:hover { background-color: #007bff; color: #fff; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">خدمات جامعة مؤتة</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="services.html">الخدمات</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" onclick="goBack()">رجوع</a></li>
-            </ul>
+        <h1>تفاصيل الخدمة</h1>
+        <div class="service-info">
+            <img src="service-image.jpg" alt="صورة الخدمة">
+            <h2>اسم الخدمة</h2>
+            <p>وصف مفصل للخدمة المقدمة.</p>
+            <p><strong>نوع الخدمة:</strong> <span id="service-type"></span></p>
+            <p><strong>رقم الهاتف:</strong> <a href="tel:+962790000000">+962790000000</a></p>
+            <p><strong>الموقع الجغرافي:</strong> <a href="https://maps.google.com/" target="_blank">عرض على الخريطة</a></p>
+        </div>
+        
+        <div class="reviews">
+            <h3>التقييمات</h3>
+            <div id="reviews-list">
+                <p>⭐ 4.5 / 5 (50 تقييم)</p>
+                <ul>
+                    <li><strong>محمد:</strong> خدمة رائعة! ⭐⭐⭐⭐⭐</li>
+                    <li><strong>أحمد:</strong> كان من الأفضل لو كان السعر أقل ⭐⭐⭐⭐</li>
+                </ul>
+            </div>
+            <h3>إضافة تقييم وتعليق</h3>
+            <form id="review-form">
+                <label for="username">اسم المستخدم:</label>
+                <input type="text" id="username" required>
+                
+                <label for="rating">التقييم:</label>
+                <select id="rating">
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="1">⭐</option>
+                </select>
+                
+                <label for="comment">التعليق:</label>
+                <textarea id="comment" required></textarea>
+                
+                <button type="submit" class="btn">إرسال التقييم</button>
+            </form>
         </div>
     </div>
-</nav>
-<div class="service-container">
-    <h3 class="text-center">تفاصيل الخدمة</h3>
-    <img src="service1.jpg" class="img-fluid mb-3" alt="خدمة السكن">
-    <p><strong>الوصف:</strong> سكن قريب من الجامعة مع جميع الخدمات.</p>
-    <p><strong>الهاتف:</strong> <a href="tel:+962777123456" class="text-primary">+962 777 123 456</a></p>
-    <p><strong>الموقع الجغرافي:</strong> <a href="https://goo.gl/maps/XYZ" target="_blank" class="text-primary">عرض على الخريطة</a></p>
-    <button class="btn btn-primary btn-custom">إضافة تقييم</button>
-</div>
-<footer class="text-center mt-5">
-    جميع الحقوق محفوظة &copy; 2025 | @t_zep10 | amajali957@gmail.com
-</footer>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById("service-type").innerText = urlParams.get("type") === "plus" ? "بلس" : "عادي";
+        
+        document.getElementById("review-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const rating = document.getElementById("rating").value;
+            const comment = document.getElementById("comment").value;
+            const reviewList = document.getElementById("reviews-list").querySelector("ul");
+            const newReview = document.createElement("li");
+            newReview.innerHTML = `<strong>${username}:</strong> ${comment} (${"⭐".repeat(rating)})`;
+            reviewList.appendChild(newReview);
+            document.getElementById("review-form").reset();
+            alert("تم إضافة تقييمك بنجاح!");
+        });
+    </script>
 </body>
 </html>
