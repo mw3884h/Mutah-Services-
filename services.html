@@ -3,60 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الخدمات</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
-        .service-card { margin-bottom: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; overflow: hidden; }
-        .btn-custom { transition: background-color 0.3s ease; }
-        .btn-custom:hover { background-color: #007bff; color: #fff; }
-    </style>
+    <title>عرض الخدمات</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">خدمات جامعة مؤتة</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="login.html">تسجيل الدخول</a></li>
-                <li class="nav-item"><a class="nav-link" href="register.html">إنشاء حساب</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" onclick="goBack()">رجوع</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container mt-5">
-    <h3 class="text-center">الخدمات المتاحة</h3>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card service-card">
-                <img src="service1.jpg" class="card-img-top" alt="خدمة السكن">
-                <div class="card-body">
-                    <h5 class="card-title">خدمة السكن والإقامة</h5>
-                    <p class="card-text">سكن قريب من الجامعة مع جميع الخدمات.</p>
-                    <a href="service_details.html" class="btn btn-primary btn-custom">عرض التفاصيل</a>
-                </div>
+        <h1>الخدمات المتاحة</h1>
+        <p>اختر الخدمة الأساسية، ثم استعرض الفروع المتاحة (بلس أو عادي)، والخدمات الفرعية.</p>
+        <div class="service-list">
+            <div class="service-item">
+                <img src="housing.jpg" alt="السكن والإقامة">
+                <h2>السكن والإقامة</h2>
+                <p>إيجاد شقق سكنية وسكن طلاب بالقرب من الجامعة.</p>
+                <a href="service_details.html?service=housing&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=housing&type=normal" class="btn">عرض فرع عادي</a>
+            </div>
+            <div class="service-item">
+                <img src="transport.jpg" alt="خدمة النقل">
+                <h2>خدمة النقل</h2>
+                <p>توفير وسائل النقل الخاصة والعامة للطلاب.</p>
+                <a href="service_details.html?service=transport&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=transport&type=normal" class="btn">عرض فرع عادي</a>
+            </div>
+            <div class="service-item">
+                <img src="restaurants.jpg" alt="المطاعم">
+                <h2>خدمة المطاعم</h2>
+                <p>أشهر المطاعم القريبة من الجامعة مع تقييمات.</p>
+                <a href="service_details.html?service=restaurants&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=restaurants&type=normal" class="btn">عرض فرع عادي</a>
+            </div>
+            <div class="service-item">
+                <img src="supermarket.jpg" alt="السوبر ماركت">
+                <h2>خدمة السوبر ماركت</h2>
+                <p>محلات التموين والمواد الغذائية بالقرب منك.</p>
+                <a href="service_details.html?service=supermarket&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=supermarket&type=normal" class="btn">عرض فرع عادي</a>
+            </div>
+            <div class="service-item">
+                <img src="cafes.jpg" alt="الكافيه وسبل الترفيه">
+                <h2>الكافيه وسبل الترفيه</h2>
+                <p>أماكن الترفيه والمقاهي المناسبة للطلاب.</p>
+                <a href="service_details.html?service=cafes&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=cafes&type=normal" class="btn">عرض فرع عادي</a>
+            </div>
+            <div class="service-item">
+                <img src="sweets.jpg" alt="الحلويات">
+                <h2>خدمة الحلويات</h2>
+                <p>متاجر الحلويات والمخابز المتاحة.</p>
+                <a href="service_details.html?service=sweets&type=plus" class="btn">عرض فرع بلس</a>
+                <a href="service_details.html?service=sweets&type=normal" class="btn">عرض فرع عادي</a>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card service-card">
-                <img src="service2.jpg" class="card-img-top" alt="خدمة النقل">
-                <div class="card-body">
-                    <h5 class="card-title">خدمة النقل</h5>
-                    <p class="card-text">نقل الطلاب من وإلى الجامعة.</p>
-                    <a href="service_details.html" class="btn btn-primary btn-custom">عرض التفاصيل</a>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-<footer class="text-center mt-5">
-    جميع الحقوق محفوظة &copy; 2025 | @t_zep10 | amajali957@gmail.com
-</footer>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 </body>
 </html>
