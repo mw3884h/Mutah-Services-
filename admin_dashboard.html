@@ -3,70 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الأدمن</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
-        .dashboard-container { max-width: 1000px; margin: 50px auto; padding: 30px; background: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; }
-        .btn-custom { transition: background-color 0.3s ease; }
-        .btn-custom:hover { background-color: #007bff; color: #fff; }
-    </style>
+    <title>إدارة الطلبات - الأدمن</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleRequest(action, serviceName) {
+            if (confirm(`هل أنت متأكد من ${action} الخدمة: ${serviceName}؟`)) {
+                alert(`تم ${action} الخدمة: ${serviceName} بنجاح!`);
+                // هنا يتم إرسال الطلب إلى السيرفر لحفظ التحديث في قاعدة البيانات
+            }
+        }
+    </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">خدمات جامعة مؤتة</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">تسجيل الخروج</a></li>
-            </ul>
-        </div>
+        <h1>إدارة الطلبات</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>اسم الخدمة</th>
+                    <th>التصنيف الأساسي</th>
+                    <th>الخدمة الفرعية</th>
+                    <th>نوع الخدمة</th>
+                    <th>رقم الهاتف</th>
+                    <th>الموقع الجغرافي</th>
+                    <th>الإجراء</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>شقة مفروشة</td>
+                    <td>السكن والإقامة</td>
+                    <td>شقة مفروشة</td>
+                    <td>بلس</td>
+                    <td>+962790000000</td>
+                    <td><a href="https://maps.google.com" target="_blank">عرض الموقع</a></td>
+                    <td>
+                        <button class="btn approve" onclick="handleRequest('الموافقة على', 'شقة مفروشة')">موافقة</button>
+                        <button class="btn reject" onclick="handleRequest('رفض', 'شقة مفروشة')">رفض</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</nav>
-<div class="dashboard-container">
-    <h3 class="text-center">لوحة تحكم الأدمن</h3>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>اسم الخدمة</th>
-                <th>الوصف</th>
-                <th>الهاتف</th>
-                <th>حالة الخدمة</th>
-                <th>إجراءات</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>سكن الطلاب</td>
-                <td>سكن مفروش قريب من الجامعة</td>
-                <td><a href="tel:+962777123456" class="text-primary">+962 777 123 456</a></td>
-                <td>قيد الانتظار</td>
-                <td>
-                    <button class="btn btn-success btn-custom" onclick="approveService(this)">موافقة</button>
-                    <button class="btn btn-danger btn-custom" onclick="rejectService(this)">رفض</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<footer class="text-center mt-5">
-    جميع الحقوق محفوظة &copy; 2025 | @t_zep10 | amajali957@gmail.com
-</footer>
-<script>
-    function approveService(button) {
-        alert("تمت الموافقة على الخدمة");
-        button.closest("tr").querySelector("td:nth-child(4)").textContent = "مقبول";
-    }
-
-    function rejectService(button) {
-        alert("تم رفض الخدمة");
-        button.closest("tr").querySelector("td:nth-child(4)").textContent = "مرفوض";
-    }
-
-    function logout() {
-        alert("تم تسجيل الخروج");
-        window.location.href = "index.html";
-    }
-</script>
 </body>
 </html>
