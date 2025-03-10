@@ -3,60 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إضافة خدمة</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
-        .service-form { max-width: 600px; margin: 50px auto; padding: 30px; background: white; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border-radius: 10px; }
-        .btn-custom { transition: background-color 0.3s ease; }
-        .btn-custom:hover { background-color: #007bff; color: #fff; }
-    </style>
+    <title>إضافة خدمة جديدة</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">خدمات جامعة مؤتة</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="services.html">الخدمات</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" onclick="goBack()">رجوع</a></li>
-            </ul>
-        </div>
+        <h1>إضافة خدمة جديدة</h1>
+        <form action="submit_service.html" method="post" enctype="multipart/form-data">
+            <label for="service-name">اسم الخدمة:</label>
+            <input type="text" id="service-name" name="service-name" required>
+            
+            <label for="category">اختر التصنيف:</label>
+            <select id="category" name="category" required onchange="updateSubcategories()">
+                <option value="السكن والإقامة">السكن والإقامة</option>
+                <option value="النقل">النقل</option>
+                <option value="المطاعم">المطاعم</option>
+                <option value="السوبر ماركت">السوبر ماركت</option>
+                <option value="الكافيه وسبل الترفيه">الكافيه وسبل الترفيه</option>
+                <option value="الحلويات">الحلويات</option>
+            </select>
+            
+            <label for="subcategory">اختر الفرع:</label>
+            <select id="subcategory" name="subcategory" required>
+                <option value="">يرجى اختيار التصنيف أولاً</option>
+            </select>
+            
+            <label for="description">وصف الخدمة:</label>
+            <textarea id="description" name="description" required></textarea>
+            
+            <label for="phone">رقم الهاتف:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="location">الموقع الجغرافي:</label>
+            <input type="text" id="location" name="location" placeholder="رابط خرائط جوجل" required>
+            
+            <label for="images">تحميل الصور:</label>
+            <input type="file" id="images" name="images" multiple accept="image/*" required>
+            
+            <button type="submit">إرسال الطلب إلى الأدمن</button>
+        </form>
     </div>
-</nav>
-<div class="service-form">
-    <h3 class="text-center">إضافة خدمة جديدة</h3>
-    <form action="admin_dashboard.html" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="title" class="form-label">اسم الخدمة</label>
-            <input type="text" class="form-control" id="title" name="title" required>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">الوصف</label>
-            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">رقم الهاتف</label>
-            <input type="tel" class="form-control" id="phone" name="phone" required>
-        </div>
-        <div class="mb-3">
-            <label for="location" class="form-label">رابط الموقع الجغرافي</label>
-            <input type="url" class="form-control" id="location" name="location" required>
-        </div>
-        <div class="mb-3">
-            <label for="images" class="form-label">إضافة صور (حد أقصى 4 صور)</label>
-            <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple required>
-        </div>
-        <button type="submit" class="btn btn-success btn-custom w-100">إضافة الخدمة</button>
-    </form>
-</div>
-<footer class="text-center mt-5">
-    جميع الحقوق محفوظة &copy; 2025 | @t_zep10 | amajali957@gmail.com
-</footer>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+    
+    <script>
+        function updateSubcategories() {
+            var category = document.getElementById("category").value;
+            var subcategory = document.getElementById("subcategory");
+            subcategory.innerHTML = "";
+            
+            var options = {
+                "السكن والإقامة": ["شقة مفروشة", "غرفة للإيجار", "سكن طلابي"],
+                "النقل": ["تاكسي", "حافلة", "توصيل خاص"],
+                "المطاعم": ["وجبات سريعة", "مطاعم شرقية", "مطاعم غربية"],
+                "السوبر ماركت": ["متجر صغير", "متجر متوسط", "متجر كبير"],
+                "الكافيه وسبل الترفيه": ["كافيه", "منتزه", "نادي رياضي"],
+                "الحلويات": ["حلويات شرقية", "حلويات غربية", "مخبوزات"]
+            };
+            
+            if (options[category]) {
+                options[category].forEach(function(item) {
+                    var option = document.createElement("option");
+                    option.value = item;
+                    option.textContent = item;
+                    subcategory.appendChild(option);
+                });
+            } else {
+                var defaultOption = document.createElement("option");
+                defaultOption.value = "";
+                defaultOption.textContent = "يرجى اختيار التصنيف أولاً";
+                subcategory.appendChild(defaultOption);
+            }
+        }
+    </script>
 </body>
 </html>
